@@ -5,9 +5,10 @@
   }
 
   location ~ "/scorm/(?P<file>.*)" {
+    root {{ edxapp_data_dir }}/staticfiles/scorm;
     add_header 'Access-Control-Allow-Origin' $cors_origin;
     add_header 'Access-Control-Allow-Credentials' 'true';
     add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-    try_files /{{ EDXAPP_SCORM_PLAYER_LOCAL_STORAGE_ROOT }}/$file =404;
+    try_files /$file =404;
   }
 {% endif %}
